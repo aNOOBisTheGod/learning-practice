@@ -1,0 +1,11 @@
+/tmp/
+/output/
+/.dart_tool/
+/build/
+.DS_Store
+.env
+*.log
+*.zip
+/submission/vcs/git_log.txt
+/Учебная_практика_КТ1_6_10_—_памятка_студентам.pdf
+/090304_00И0000_Иванов_ИИ_ВКР_пример.docx
