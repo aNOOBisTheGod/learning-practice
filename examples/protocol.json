@@ -1,0 +1,15 @@
+{
+  "order": "DEMO-001",
+  "serial": "DEMO-SERVER-001",
+  "plan": "training-1",
+  "configuration_matches": true,
+  "open_defects": 0,
+  "checks": {
+    "cpu": "pass",
+    "memory": "pass",
+    "storage": "pass",
+    "network": "pass",
+    "cooling": "pass",
+    "power": "pass"
+  }
+}
