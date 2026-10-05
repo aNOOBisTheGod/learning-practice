@@ -32,10 +32,12 @@ log = subprocess.check_output(['git', 'log', '--all', '--date=iso',
                               '--pretty=format:%h %ad %an %s'], cwd=root)
 dates = subprocess.check_output(['git', 'log', '--all', '--format=%ad', '--date=short'], cwd=root).splitlines()
 assert len(dates) >= 3 and len(set(dates)) >= 3, 'В истории меньше трёх дат'
-report = 'Отчет_ИКБО-10-24_НовожиловВА_КТ1.pdf'
+report = 'Отчет_ИКБО-10-24_НовожиловВА_КТ1.docx'
 files = [report, 'translation/original.pdf', 'vcs/git_log.txt', 'vcs/repo_url.txt']
-for name in [report, 'translation/original.pdf']:
-    assert (folder / name).read_bytes().startswith(b'%PDF-'), f'Неверный PDF: {name}'
+with ZipFile(folder / report) as document:
+    assert document.testzip() is None
+    assert 'word/document.xml' in document.namelist()
+assert (folder / 'translation/original.pdf').read_bytes().startswith(b'%PDF-')
 url_file.write_text(url + '\n' if url else '')
 (folder / 'vcs/git_log.txt').write_bytes(log)
 archive = root / 'ИКБО-10-24_НовожиловВА_КТ1.zip'
