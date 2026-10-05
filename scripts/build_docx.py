@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 from docx import Document
-from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT, WD_TAB_LEADER
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Mm, Pt, RGBColor
@@ -20,9 +20,17 @@ for name in ['Normal', 'Title', 'Heading 1', 'Heading 2', 'TOC Heading']:
     style.font.name = 'Times New Roman'
     style.font.size = Pt(14)
     style.font.color.rgb = RGBColor(0, 0, 0)
+    rpr = style.element.get_or_add_rPr()
+    fonts = rpr.find(qn('w:rFonts'))
+    for key in list(fonts.attrib):
+        if 'theme' in key.lower(): del fonts.attrib[key]
+    for key in ['ascii', 'hAnsi', 'eastAsia', 'cs']:
+        fonts.set(qn('w:' + key), 'Times New Roman')
+    for el in list(style.element.xpath('./w:pPr/w:pBdr')):
+        el.getparent().remove(el)
     fmt = style.paragraph_format
     fmt.line_spacing = 1.5
-    fmt.space_after = Pt(5)
+    fmt.space_after = Pt(0)
     fmt.space_before = Pt(0)
     fmt.widow_control = True
 normal = doc.styles['Normal'].paragraph_format
@@ -63,25 +71,54 @@ p = sec.footer.paragraphs[0]
 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 p.paragraph_format.first_line_indent = Mm(0)
 field(p, ' PAGE ', '2')
-for text in ['МИНОБРНАУКИ РОССИИ', 'Федеральное государственное бюджетное образовательное учреждение высшего образования', '«МИРЭА - Российский технологический университет»', '(РТУ МИРЭА)']:
-    para(text)
-para('ОТЧЁТ ПО УЧЕБНОЙ ПРАКТИКЕ', before=55, bold=True, style='Title')
-para('КТ1 Исследовательский этап')
-para('Тема', before=15)
-para('Сборка и тестирование серверного оборудования', bold=True, after=30)
-for text in ['Выполнил: Новожилов Василий Алексеевич', 'Группа: ИКБО-10-24', 'Место практики: ООО «Бюджетные и Финансовые Технологии»', 'Руководитель от университета: Синицын Анатолий Васильевич', 'Руководитель от предприятия: Жиркова М. И.']:
-    para(text, WD_ALIGN_PARAGRAPH.LEFT)
-para('Москва 2026', before=40)
+for text in ['МИНОБРНАУКИ РОССИИ',
+             'Федеральное государственное бюджетное образовательное учреждение',
+             'высшего образования',
+             '«МИРЭА – Российский технологический университет»',
+             'РТУ МИРЭА']:
+    p = para(text, after=0)
+    p.paragraph_format.line_spacing = 1
+para('ОТЧЁТ', before=90, bold=True, style='Title')
+para('по учебной практике', after=0)
+para('КТ1 — Исследовательский этап', after=25)
+para('Тема: «Сборка и тестирование серверного оборудования»', bold=True, after=35)
+para('Место практики: ООО «Бюджетные и Финансовые Технологии»', WD_ALIGN_PARAGRAPH.LEFT, after=25)
+for text in ['Выполнил: студент группы ИКБО-10-24',
+             'Новожилов Василий Алексеевич',
+             'Руководитель от университета:',
+             'Синицын Анатолий Васильевич',
+             'Руководитель от предприятия:',
+             'Жиркова М. И.']:
+    p = para(text, WD_ALIGN_PARAGRAPH.LEFT, after=0)
+    p.paragraph_format.left_indent = Mm(70)
+    p.paragraph_format.line_spacing = 1
+para('Москва 2026', before=70)
 doc.add_page_break()
 para('Содержание', bold=True, after=15)
-p = doc.add_paragraph()
-p.paragraph_format.first_line_indent = Mm(0)
-field(p, ' TOC \\o "1-1" \\h \\z ', 'Обновить содержание')
+headings = [block[2:] for block in (root / 'docs/report.txt').read_text().strip().split('\n\n') if block.startswith('# ')]
+headings.append('Список использованных источников')
+for i, heading in enumerate(headings):
+    p = doc.add_paragraph(heading + '\t')
+    field(p, f' PAGEREF section_{i} \\h ', '')
+    p.paragraph_format.first_line_indent = Mm(0)
+    p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    p.paragraph_format.tab_stops.add_tab_stop(Mm(170), WD_TAB_ALIGNMENT.RIGHT, WD_TAB_LEADER.DOTS)
+    p.paragraph_format.space_after = Pt(8)
+def section_heading(text):
+    p = doc.add_heading(text, 1)
+    index = headings.index(text)
+    start = OxmlElement('w:bookmarkStart')
+    start.set(qn('w:id'), str(index))
+    start.set(qn('w:name'), f'section_{index}')
+    end = OxmlElement('w:bookmarkEnd'); end.set(qn('w:id'), str(index))
+    p._p.insert(1, start); p._p.append(end)
+    return p
+
 for block in (root / 'docs/report.txt').read_text().strip().split('\n\n'):
-    if block.startswith('# '): doc.add_heading(block[2:], 1)
+    if block.startswith('# '): section_heading(block[2:])
     elif block.startswith('## '): doc.add_heading(block[3:], 2)
     else: doc.add_paragraph(block.replace('\n', ' '))
-doc.add_heading('Список использованных источников', 1)
+section_heading('Список использованных источников')
 for s in json.loads((root / 'docs/sources.json').read_text()):
     p = doc.add_paragraph(f"{s['id']}. {s['reference']} - URL: {s['url']} (дата обращения: 05.10.2026).")
     p.alignment = WD_ALIGN_PARAGRAPH.LEFT
@@ -92,5 +129,20 @@ doc.core_properties.title = 'Сборка и тестирование серве
 doc.core_properties.subject = 'Отчёт по учебной практике КТ1'
 doc.core_properties.comments = ''
 out = root / 'submission/Отчет_ИКБО-10-24_НовожиловВА_КТ1.docx'
+for p in doc.paragraphs:
+    for run in p.runs:
+        run.font.name = 'Times New Roman'
+        run.font.size = Pt(14)
+        run.font.color.rgb = RGBColor(0, 0, 0)
+        fonts = run._r.get_or_add_rPr().find(qn('w:rFonts'))
+        for key in list(fonts.attrib):
+            if 'theme' in key.lower(): del fonts.attrib[key]
+        for key in ['ascii', 'hAnsi', 'eastAsia', 'cs']:
+            fonts.set(qn('w:' + key), 'Times New Roman')
+    for border in list(p._p.xpath('./w:pPr/w:pBdr')):
+        border.getparent().remove(border)
+update = OxmlElement('w:updateFields')
+update.set(qn('w:val'), 'true')
+doc.settings.element.append(update)
 doc.save(out)
 print(out)
