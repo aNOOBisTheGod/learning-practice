@@ -16,7 +16,7 @@
 На КТ1 нужны описание процесса, источники и начальный проект. Полная автоматизация
 относится к следующим этапам практики.
 
-Репозиторий пока локальный. Ссылка будет добавлена после создания GitHub-репозитория.
+Репозиторий: https://github.com/aNOOBisTheGod/learning-practice
 
 ## Запуск
 
@@ -27,6 +27,9 @@ dart run bin/check.dart examples/protocol.json
 dart run test/check_test.dart
 dart analyze bin test
 ```
+
+В этой рабочей папке SDK также доступен как `tmp/dart-sdk/bin/dart`.
+Если Dart не установлен глобально, используйте этот путь вместо `dart`.
 
 Код возврата: 0 — все проверки успешны, 1 — есть несоответствие или пропуск,
 64 — неверный файл или входные данные. Пример полностью учебный, это не результаты
@@ -46,3 +49,35 @@ psql -d server_checks -v ON_ERROR_STOP=1 -f sql/schema.sql
 В `docs/process.txt` описаны границы процесса, в `docs/sources.json` — библиография
 и ссылки, подтверждающие включение пяти научных публикаций в ВАК/Scopus.
 Действующие стандарты учитываются по исключению из пятилетнего ограничения.
+
+## Отчёт и архив КТ1
+
+Отчёт находится в `submission/Отчет_ИКБО-10-24_НовожиловВА_КТ1.docx`.
+Редактируемый текст —
+`docs/report.txt`, библиография — `docs/sources.json`.
+
+Пересборка архива:
+
+```sh
+python3 scripts/package.py --repo-url https://github.com/aNOOBisTheGod/learning-practice
+```
+
+Команда запишет адрес в `repo_url.txt`,
+обновит `git_log.txt` и пересоберёт `ИКБО-10-24_НовожиловВА_КТ1.zip`.
+Без ссылки доступна только черновая сборка: `python3 scripts/package.py --draft`.
+Архив содержит ровно отчёт, `translation/original.pdf` и два файла `vcs/`.
+
+Для пересборки отчёта на macOS (шрифты Times New Roman):
+
+```sh
+python3 -m venv tmp/report-env
+tmp/report-env/bin/pip install -r scripts/report-requirements.txt
+tmp/report-env/bin/python scripts/build_docx.py
+```
+
+Оригинальный фрагмент статьи уже сохранён в `submission/translation/original.pdf`.
+При наличии полного оригинала `tmp/research/combined-metrics.pdf` сборщик повторно
+извлекает страницы 1 и 24. Без полного оригинала сохранённый фрагмент не меняется.
+
+Проверки выполнены 5 октября 2026 года: Dart 3.13.5, анализатор без замечаний,
+сценарии обработки протокола проходят; схема создана в PostgreSQL 16.13.
