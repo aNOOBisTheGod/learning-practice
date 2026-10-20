@@ -8,19 +8,31 @@
 
 ## Запуск
 
-Нужен Dart 3.13 или новее.
+Прототип реализован на Python (процедурная часть) и Java (ООП).
+Обе реализации принимают один и тот же JSON и выдают одинаковый результат.
+Проверено на фактически установленных Python 3.14.3 и OpenJDK 17.0.15
+(Amazon Corretto). Для сборки Java нужен Maven; зависимость Gson 2.11.0
+скачивается автоматически.
+
+Python — без сторонних зависимостей:
 
 ```sh
-dart run bin/check.dart examples/protocol.json
+python3 bin/check.py examples/protocol.json
+```
+
+Java — модель `Protocol`, проверка `ProtocolEvaluator` и точка входа `Check`:
+
+```sh
+mvn -f java/pom.xml package
+java -jar java/target/protocol-check.jar examples/protocol.json
 ```
 
 Программа проверяет комплектность протокола и результаты испытаний. Возвращает 0, если всё прошло, 1 — если есть проблемы, 64 — если файл некорректный. В `examples/` лежат учебные данные.
 
-Проверки кода:
+Общие тесты обеих реализаций (после сборки Java):
 
 ```sh
-dart run test/check_test.dart
-dart analyze bin test
+python3 -m unittest discover -s test -p 'test_*.py' -v
 ```
 
 Схема БД (проверена на PostgreSQL 16):
