@@ -1,0 +1,502 @@
+<?xml version='1.0' encoding='utf-8'?>
+<bpmn:definitions xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_KT2" targetNamespace="https://example.org/server-acceptance">
+  <bpmn:collaboration id="Collaboration">
+    <bpmn:participant id="Initiator" name="Инициатор заявки" />
+    <bpmn:participant id="Team" name="Сборка и приёмочное тестирование сервера" processRef="Process" />
+    <bpmn:messageFlow id="RequestMessage" sourceRef="Initiator" targetRef="Start" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process" name="Сборка и приёмочное тестирование сервера" isExecutable="false">
+    <bpmn:laneSet id="Lanes">
+      <bpmn:lane id="Kit" name="Ответственный за комплектование">
+        <bpmn:flowNodeRef>Start</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>KitTask</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Build" name="Инженер сборки">
+        <bpmn:flowNodeRef>Register</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Inspect</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Parts</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Assemble</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Power</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Post</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Config</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ConfigOK</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Test" name="Инженер испытаний">
+        <bpmn:flowNodeRef>Run</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Evaluate</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Protocol</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Defect</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Return</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Accept" name="Ответственный за приёмку">
+        <bpmn:flowNodeRef>Review</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Ready</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Pass</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="Start" name="Заявка и комплект получены">
+      <bpmn:outgoing>F0</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="Start_message" />
+    </bpmn:startEvent>
+    <bpmn:manualTask id="KitTask" name="Передать комплект и документы">
+      <bpmn:incoming>F0</bpmn:incoming>
+      <bpmn:outgoing>F1</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:userTask id="Register" name="Зарегистрировать заявку">
+      <bpmn:incoming>F1</bpmn:incoming>
+      <bpmn:outgoing>F2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:manualTask id="Inspect" name="Проверить детали по документации">
+      <bpmn:incoming>F2</bpmn:incoming>
+      <bpmn:outgoing>F3</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:exclusiveGateway id="Parts" name="Комплект пригоден?">
+      <bpmn:incoming>F3</bpmn:incoming>
+      <bpmn:outgoing>F4</bpmn:outgoing>
+      <bpmn:outgoing>F15</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:manualTask id="Assemble" name="Собрать сервер">
+      <bpmn:incoming>F4</bpmn:incoming>
+      <bpmn:outgoing>F5</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="Power" name="Выполнить первое включение">
+      <bpmn:incoming>F5</bpmn:incoming>
+      <bpmn:outgoing>F6</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:exclusiveGateway id="Post" name="POST успешен?">
+      <bpmn:incoming>F6</bpmn:incoming>
+      <bpmn:outgoing>F7</bpmn:outgoing>
+      <bpmn:outgoing>F16</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Config" name="Сверить конфигурацию со спецификацией">
+      <bpmn:incoming>F7</bpmn:incoming>
+      <bpmn:outgoing>F8</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="ConfigOK" name="Совпадает?">
+      <bpmn:incoming>F8</bpmn:incoming>
+      <bpmn:outgoing>F9</bpmn:outgoing>
+      <bpmn:outgoing>F17</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:manualTask id="Run" name="Выполнить план испытаний">
+      <bpmn:incoming>F9</bpmn:incoming>
+      <bpmn:outgoing>F10</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:userTask id="Evaluate" name="Проверить готовность протокола">
+      <bpmn:incoming>F10</bpmn:incoming>
+      <bpmn:outgoing>F11</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Protocol" name="Сформировать протокол">
+      <bpmn:incoming>F11</bpmn:incoming>
+      <bpmn:outgoing>F12</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Review" name="Рассмотреть протокол">
+      <bpmn:incoming>F12</bpmn:incoming>
+      <bpmn:outgoing>F13</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Ready" name="Допуск подтверждён?">
+      <bpmn:incoming>F13</bpmn:incoming>
+      <bpmn:outgoing>F14</bpmn:outgoing>
+      <bpmn:outgoing>F18</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Pass" name="Сервер и протокол переданы">
+      <bpmn:incoming>F14</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="Defect" name="Зафиксировать несоответствия">
+      <bpmn:incoming>F15</bpmn:incoming>
+      <bpmn:incoming>F16</bpmn:incoming>
+      <bpmn:incoming>F17</bpmn:incoming>
+      <bpmn:incoming>F18</bpmn:incoming>
+      <bpmn:outgoing>F19</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Return" name="Возврат на доработку">
+      <bpmn:incoming>F19</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="F0" sourceRef="Start" targetRef="KitTask" name="" />
+    <bpmn:sequenceFlow id="F1" sourceRef="KitTask" targetRef="Register" name="" />
+    <bpmn:sequenceFlow id="F2" sourceRef="Register" targetRef="Inspect" name="" />
+    <bpmn:sequenceFlow id="F3" sourceRef="Inspect" targetRef="Parts" name="" />
+    <bpmn:sequenceFlow id="F4" sourceRef="Parts" targetRef="Assemble" name="да">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">да</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F5" sourceRef="Assemble" targetRef="Power" name="" />
+    <bpmn:sequenceFlow id="F6" sourceRef="Power" targetRef="Post" name="" />
+    <bpmn:sequenceFlow id="F7" sourceRef="Post" targetRef="Config" name="да">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">да</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F8" sourceRef="Config" targetRef="ConfigOK" name="" />
+    <bpmn:sequenceFlow id="F9" sourceRef="ConfigOK" targetRef="Run" name="да">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">да</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F10" sourceRef="Run" targetRef="Evaluate" name="" />
+    <bpmn:sequenceFlow id="F11" sourceRef="Evaluate" targetRef="Protocol" name="" />
+    <bpmn:sequenceFlow id="F12" sourceRef="Protocol" targetRef="Review" name="" />
+    <bpmn:sequenceFlow id="F13" sourceRef="Review" targetRef="Ready" name="" />
+    <bpmn:sequenceFlow id="F14" sourceRef="Ready" targetRef="Pass" name="да">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">да</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F15" sourceRef="Parts" targetRef="Defect" name="нет">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">нет</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F16" sourceRef="Post" targetRef="Defect" name="нет">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">нет</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F17" sourceRef="ConfigOK" targetRef="Defect" name="нет">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">нет</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F18" sourceRef="Ready" targetRef="Defect" name="нет">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">нет</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F19" sourceRef="Defect" targetRef="Return" name="" />
+    <bpmn:dataObject id="DOrder_object" />
+    <bpmn:dataObjectReference id="DOrder" name="Заявка; спецификация&#10;orders / spec_items" dataObjectRef="DOrder_object" />
+    <bpmn:dataObject id="DModels_object" />
+    <bpmn:dataObjectReference id="DModels" name="Каталог моделей&#10;models" dataObjectRef="DModels_object" />
+    <bpmn:dataObject id="DComponents_object" />
+    <bpmn:dataObjectReference id="DComponents" name="Компоненты; состав&#10;components / run_components" dataObjectRef="DComponents_object" />
+    <bpmn:dataObject id="DSpec_object" />
+    <bpmn:dataObjectReference id="DSpec" name="Спецификация&#10;spec_items" dataObjectRef="DSpec_object" />
+    <bpmn:dataObject id="DPlan_object" />
+    <bpmn:dataObjectReference id="DPlan" name="План; состав; тесты&#10;plans / plan_tests / tests" dataObjectRef="DPlan_object" />
+    <bpmn:dataObject id="DRun_object" />
+    <bpmn:dataObjectReference id="DRun" name="Карточка прогона&#10;runs" dataObjectRef="DRun_object" />
+    <bpmn:dataObject id="DResults_object" />
+    <bpmn:dataObjectReference id="DResults" name="Результаты&#10;results" dataObjectRef="DResults_object" />
+    <bpmn:dataObject id="DDefects_object" />
+    <bpmn:dataObjectReference id="DDefects" name="Дефекты&#10;defects" dataObjectRef="DDefects_object" />
+    <bpmn:dataObject id="DProtocol_object" />
+    <bpmn:dataObjectReference id="DProtocol" name="Протокол&#10;(представление)" dataObjectRef="DProtocol_object" />
+    <bpmn:association id="ADOrder" sourceRef="DOrder" targetRef="Register" associationDirection="None" />
+    <bpmn:association id="ADModels" sourceRef="DModels" targetRef="Inspect" associationDirection="None" />
+    <bpmn:association id="ADComponents" sourceRef="DComponents" targetRef="Assemble" associationDirection="None" />
+    <bpmn:association id="ADSpec" sourceRef="DSpec" targetRef="Config" associationDirection="None" />
+    <bpmn:association id="ADPlan" sourceRef="DPlan" targetRef="Run" associationDirection="None" />
+    <bpmn:association id="ADRun" sourceRef="DRun" targetRef="Run" associationDirection="None" />
+    <bpmn:association id="ADResults" sourceRef="DResults" targetRef="Run" associationDirection="None" />
+    <bpmn:association id="ADDefects" sourceRef="DDefects" targetRef="Defect" associationDirection="None" />
+    <bpmn:association id="ADProtocol" sourceRef="DProtocol" targetRef="Protocol" associationDirection="None" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram">
+    <bpmndi:BPMNPlane id="Plane" bpmnElement="Collaboration">
+      <bpmndi:BPMNShape id="Initiator_di" bpmnElement="Initiator" isHorizontal="true">
+        <dc:Bounds x="20" y="20" width="1980" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Team_di" bpmnElement="Team" isHorizontal="true">
+        <dc:Bounds x="20" y="120" width="1980" height="1140" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Kit_di" bpmnElement="Kit" isHorizontal="true">
+        <dc:Bounds x="50" y="120" width="1950" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Build_di" bpmnElement="Build" isHorizontal="true">
+        <dc:Bounds x="50" y="300" width="1950" height="340" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Test_di" bpmnElement="Test" isHorizontal="true">
+        <dc:Bounds x="50" y="640" width="1950" height="390" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Accept_di" bpmnElement="Accept" isHorizontal="true">
+        <dc:Bounds x="50" y="1030" width="1950" height="230" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Start_di" bpmnElement="Start">
+        <dc:Bounds x="250" y="185" width="40" height="40" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="195" y="235" width="160" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="KitTask_di" bpmnElement="KitTask">
+        <dc:Bounds x="430" y="170" width="165" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Register_di" bpmnElement="Register">
+        <dc:Bounds x="240" y="350" width="165" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Inspect_di" bpmnElement="Inspect">
+        <dc:Bounds x="460" y="350" width="165" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Parts_di" bpmnElement="Parts" isMarkerVisible="true">
+        <dc:Bounds x="675" y="365" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="620" y="425" width="160" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Assemble_di" bpmnElement="Assemble">
+        <dc:Bounds x="775" y="350" width="165" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Power_di" bpmnElement="Power">
+        <dc:Bounds x="995" y="350" width="165" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Post_di" bpmnElement="Post" isMarkerVisible="true">
+        <dc:Bounds x="1210" y="365" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1155" y="425" width="160" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Config_di" bpmnElement="Config" bioc:fill="#dceefb">
+        <dc:Bounds x="1320" y="345" width="190" height="90" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ConfigOK_di" bpmnElement="ConfigOK" isMarkerVisible="true">
+        <dc:Bounds x="1570" y="365" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1515" y="425" width="160" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Run_di" bpmnElement="Run">
+        <dc:Bounds x="1510" y="690" width="190" height="90" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Evaluate_di" bpmnElement="Evaluate" bioc:fill="#dceefb">
+        <dc:Bounds x="1260" y="690" width="190" height="90" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Protocol_di" bpmnElement="Protocol" bioc:fill="#dceefb">
+        <dc:Bounds x="1010" y="690" width="190" height="90" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Review_di" bpmnElement="Review">
+        <dc:Bounds x="1010" y="1090" width="190" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Ready_di" bpmnElement="Ready" isMarkerVisible="true">
+        <dc:Bounds x="1270" y="1105" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1215" y="1165" width="160" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Pass_di" bpmnElement="Pass">
+        <dc:Bounds x="1530" y="1110" width="40" height="40" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1475" y="1160" width="160" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Defect_di" bpmnElement="Defect">
+        <dc:Bounds x="755" y="870" width="190" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Return_di" bpmnElement="Return">
+        <dc:Bounds x="520" y="890" width="40" height="40" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="465" y="940" width="160" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DOrder_di" bpmnElement="DOrder">
+        <dc:Bounds x="245" y="470" width="50" height="65" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="185" y="540" width="170" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DModels_di" bpmnElement="DModels">
+        <dc:Bounds x="480" y="470" width="50" height="65" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="420" y="540" width="170" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DComponents_di" bpmnElement="DComponents">
+        <dc:Bounds x="1710" y="420" width="50" height="65" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1650" y="490" width="170" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DSpec_di" bpmnElement="DSpec">
+        <dc:Bounds x="1325" y="470" width="50" height="65" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1265" y="540" width="170" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DPlan_di" bpmnElement="DPlan">
+        <dc:Bounds x="1810" y="660" width="50" height="65" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1750" y="730" width="170" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DRun_di" bpmnElement="DRun">
+        <dc:Bounds x="1810" y="850" width="50" height="65" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1750" y="920" width="170" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DResults_di" bpmnElement="DResults">
+        <dc:Bounds x="1335" y="850" width="50" height="65" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1275" y="920" width="170" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DDefects_di" bpmnElement="DDefects">
+        <dc:Bounds x="630" y="720" width="50" height="65" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="570" y="790" width="170" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DProtocol_di" bpmnElement="DProtocol">
+        <dc:Bounds x="1050" y="880" width="50" height="65" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="990" y="950" width="170" height="65" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="F0_di" bpmnElement="F0">
+        <di:waypoint x="290" y="205" />
+        <di:waypoint x="430" y="205" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F1_di" bpmnElement="F1">
+        <di:waypoint x="512" y="250" />
+        <di:waypoint x="512" y="280" />
+        <di:waypoint x="322" y="280" />
+        <di:waypoint x="322" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F2_di" bpmnElement="F2">
+        <di:waypoint x="405" y="390" />
+        <di:waypoint x="460" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F3_di" bpmnElement="F3">
+        <di:waypoint x="625" y="390" />
+        <di:waypoint x="675" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F4_di" bpmnElement="F4">
+        <di:waypoint x="725" y="390" />
+        <di:waypoint x="775" y="390" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="735" y="355" width="30" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F5_di" bpmnElement="F5">
+        <di:waypoint x="940" y="390" />
+        <di:waypoint x="995" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F6_di" bpmnElement="F6">
+        <di:waypoint x="1160" y="390" />
+        <di:waypoint x="1210" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F7_di" bpmnElement="F7">
+        <di:waypoint x="1260" y="390" />
+        <di:waypoint x="1320" y="390" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1275" y="355" width="30" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F8_di" bpmnElement="F8">
+        <di:waypoint x="1510" y="390" />
+        <di:waypoint x="1570" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F9_di" bpmnElement="F9">
+        <di:waypoint x="1595" y="415" />
+        <di:waypoint x="1595" y="690" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1600" y="595" width="30" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F10_di" bpmnElement="F10">
+        <di:waypoint x="1510" y="735" />
+        <di:waypoint x="1450" y="735" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F11_di" bpmnElement="F11">
+        <di:waypoint x="1260" y="735" />
+        <di:waypoint x="1200" y="735" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F12_di" bpmnElement="F12">
+        <di:waypoint x="1105" y="780" />
+        <di:waypoint x="1105" y="1090" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F13_di" bpmnElement="F13">
+        <di:waypoint x="1200" y="1130" />
+        <di:waypoint x="1270" y="1130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F14_di" bpmnElement="F14">
+        <di:waypoint x="1320" y="1130" />
+        <di:waypoint x="1530" y="1130" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1390" y="1095" width="30" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F15_di" bpmnElement="F15">
+        <di:waypoint x="700" y="415" />
+        <di:waypoint x="700" y="600" />
+        <di:waypoint x="850" y="600" />
+        <di:waypoint x="850" y="870" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="705" y="520" width="40" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F16_di" bpmnElement="F16">
+        <di:waypoint x="1235" y="415" />
+        <di:waypoint x="1235" y="575" />
+        <di:waypoint x="850" y="575" />
+        <di:waypoint x="850" y="870" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1240" y="520" width="40" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F17_di" bpmnElement="F17">
+        <di:waypoint x="1570" y="390" />
+        <di:waypoint x="1540" y="390" />
+        <di:waypoint x="1540" y="550" />
+        <di:waypoint x="850" y="550" />
+        <di:waypoint x="850" y="870" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1510" y="510" width="40" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F18_di" bpmnElement="F18">
+        <di:waypoint x="1295" y="1105" />
+        <di:waypoint x="1295" y="1000" />
+        <di:waypoint x="850" y="1000" />
+        <di:waypoint x="850" y="950" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1300" y="1040" width="40" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F19_di" bpmnElement="F19">
+        <di:waypoint x="755" y="910" />
+        <di:waypoint x="560" y="910" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ADOrder_di" bpmnElement="ADOrder">
+        <di:waypoint x="270.0" y="470" />
+        <di:waypoint x="270.0" y="450" />
+        <di:waypoint x="322.5" y="450" />
+        <di:waypoint x="322.5" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ADModels_di" bpmnElement="ADModels">
+        <di:waypoint x="505.0" y="470" />
+        <di:waypoint x="505.0" y="450" />
+        <di:waypoint x="542.5" y="450" />
+        <di:waypoint x="542.5" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ADComponents_di" bpmnElement="ADComponents">
+        <di:waypoint x="1735" y="420" />
+        <di:waypoint x="1735" y="310" />
+        <di:waypoint x="857" y="310" />
+        <di:waypoint x="857" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ADSpec_di" bpmnElement="ADSpec">
+        <di:waypoint x="1350.0" y="470" />
+        <di:waypoint x="1350.0" y="455" />
+        <di:waypoint x="1415.0" y="455" />
+        <di:waypoint x="1415.0" y="435" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ADPlan_di" bpmnElement="ADPlan">
+        <di:waypoint x="1835.0" y="660" />
+        <di:waypoint x="1835.0" y="800" />
+        <di:waypoint x="1605.0" y="800" />
+        <di:waypoint x="1605.0" y="780" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ADRun_di" bpmnElement="ADRun">
+        <di:waypoint x="1835.0" y="850" />
+        <di:waypoint x="1835.0" y="800" />
+        <di:waypoint x="1605.0" y="800" />
+        <di:waypoint x="1605.0" y="780" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ADResults_di" bpmnElement="ADResults">
+        <di:waypoint x="1360" y="850" />
+        <di:waypoint x="1360" y="815" />
+        <di:waypoint x="1605" y="815" />
+        <di:waypoint x="1605" y="780" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ADDefects_di" bpmnElement="ADDefects">
+        <di:waypoint x="655.0" y="720" />
+        <di:waypoint x="655.0" y="970" />
+        <di:waypoint x="850.0" y="970" />
+        <di:waypoint x="850.0" y="950" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ADProtocol_di" bpmnElement="ADProtocol">
+        <di:waypoint x="1075.0" y="880" />
+        <di:waypoint x="1075.0" y="800" />
+        <di:waypoint x="1105.0" y="800" />
+        <di:waypoint x="1105.0" y="780" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RequestMessage_di" bpmnElement="RequestMessage">
+        <di:waypoint x="270" y="80" />
+        <di:waypoint x="270" y="185" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

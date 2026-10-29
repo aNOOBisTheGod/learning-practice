@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram id="er_logical" name="Логическая модель данных">
+    <mxGraphModel dx="2080" dy="1120" grid="1" page="1" pageWidth="2080" pageHeight="1120">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="e0" value="" style="edgeStyle=none;rounded=0;html=0;fontSize=17;strokeColor=#334c60;startArrow=ERone;endArrow=ERzeroToMany;exitX=1.0;exitY=0.5588235294117647;exitPerimeter=0;entryX=0.0;entryY=0.5588235294117647;entryPerimeter=0;" edge="1" parent="1" source="models" target="spec_items">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="350" y="160" as="sourcePoint" />
+            <mxPoint x="440" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e1" value="" style="edgeStyle=none;rounded=0;html=0;fontSize=17;strokeColor=#334c60;startArrow=ERone;endArrow=ERmany;exitX=0.0;exitY=0.2391304347826087;exitPerimeter=0;entryX=1.0;entryY=0.3235294117647059;entryPerimeter=0;" edge="1" parent="1" source="orders" target="spec_items">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="870" y="120" as="sourcePoint" />
+            <mxPoint x="770" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=none;rounded=0;html=0;fontSize=17;strokeColor=#334c60;startArrow=ERone;endArrow=ERzeroToMany;exitX=0.5;exitY=1.0;exitPerimeter=0;entryX=0.5;entryY=0.0;entryPerimeter=0;" edge="1" parent="1" source="orders" target="runs">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1035" y="295" as="sourcePoint" />
+            <mxPoint x="1035" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=none;rounded=0;html=0;fontSize=17;strokeColor=#334c60;startArrow=ERone;endArrow=ERzeroToMany;exitX=0.5;exitY=1.0;exitPerimeter=0;entryX=0.5;entryY=0.0;entryPerimeter=0;" edge="1" parent="1" source="models" target="components">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="195" y="235" as="sourcePoint" />
+            <mxPoint x="195" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=none;rounded=0;html=0;fontSize=17;strokeColor=#334c60;startArrow=ERone;endArrow=ERzeroToMany;exitX=1.0;exitY=0.5;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="components" target="run_components">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="350" y="525" as="sourcePoint" />
+            <mxPoint x="440" y="525" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" value="" style="edgeStyle=none;rounded=0;html=0;fontSize=17;strokeColor=#334c60;startArrow=ERone;endArrow=ERzeroToMany;exitX=0.0;exitY=0.3620689655172414;exitPerimeter=0;entryX=1.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="runs" target="run_components">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="870" y="525" as="sourcePoint" />
+            <mxPoint x="770" y="525" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" value="" style="edgeStyle=none;rounded=0;html=0;fontSize=17;strokeColor=#334c60;startArrow=ERone;endArrow=ERzeroToMany;exitX=0.0;exitY=0.5862068965517241;exitPerimeter=0;entryX=1.0;entryY=0.3620689655172414;entryPerimeter=0;" edge="1" parent="1" source="plans" target="runs">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1300" y="525" as="sourcePoint" />
+            <mxPoint x="1200" y="525" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" value="" style="edgeStyle=none;rounded=0;html=0;fontSize=17;strokeColor=#334c60;startArrow=ERone;endArrow=ERmany;exitX=0.5;exitY=0.0;exitPerimeter=0;entryX=0.5;entryY=1.0;entryPerimeter=0;" edge="1" parent="1" source="plans" target="plan_tests">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1465" y="440" as="sourcePoint" />
+            <mxPoint x="1465" y="215" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" value="" style="edgeStyle=none;rounded=0;html=0;fontSize=17;strokeColor=#334c60;startArrow=ERone;endArrow=ERzeroToMany;exitX=0.0;exitY=0.4411764705882353;exitPerimeter=0;entryX=1.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="tests" target="plan_tests">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1730" y="140" as="sourcePoint" />
+            <mxPoint x="1630" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" value="" style="edgeStyle=none;rounded=0;html=0;fontSize=17;strokeColor=#334c60;startArrow=ERone;endArrow=ERzeroToMany;exitX=0.5;exitY=1.0;exitPerimeter=0;entryX=0.5;entryY=0.0;entryPerimeter=0;" edge="1" parent="1" source="runs" target="defects">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1035" y="710" as="sourcePoint" />
+            <mxPoint x="1035" y="870" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" value="" style="edgeStyle=none;rounded=0;html=0;fontSize=17;strokeColor=#334c60;startArrow=ERone;endArrow=ERzeroToMany;exitX=1.0;exitY=0.7586206896551724;exitPerimeter=0;entryX=0.0;entryY=0.2692307692307692;entryPerimeter=0;" edge="1" parent="1" source="runs" target="results">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1200" y="640" as="sourcePoint" />
+            <mxPoint x="1300" y="880" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1250" y="640" />
+              <mxPoint x="1250" y="880" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" value="" style="edgeStyle=none;rounded=0;html=0;fontSize=17;strokeColor=#334c60;startArrow=ERone;endArrow=ERzeroToMany;exitX=0.5;exitY=1.0;exitPerimeter=0;entryX=1.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="tests" target="results">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1880" y="235" as="sourcePoint" />
+            <mxPoint x="1700" y="940" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1880" y="940" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="models" value="Модель / models" style="shape=swimlane;startSize=36;horizontal=1;html=0;fontFamily=Arial;fontSize=21;fillColor=#e8eef3;strokeColor=#253746;" vertex="1" parent="1">
+          <mxGeometry x="40" y="65" width="310" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="models_fields" value="PK id&#10;kind&#10;name" style="text;html=0;align=left;verticalAlign=top;spacingLeft=8;fontFamily=Arial;fontSize=20;" vertex="1" parent="models">
+          <mxGeometry x="0" y="40" width="310" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="spec_items" value="Позиция / spec_items" style="shape=swimlane;startSize=36;horizontal=1;html=0;fontFamily=Arial;fontSize=21;fillColor=#e8eef3;strokeColor=#253746;" vertex="1" parent="1">
+          <mxGeometry x="440" y="65" width="330" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="spec_items_fields" value="PK, FK order_id&#10;PK, FK model_id&#10;quantity" style="text;html=0;align=left;verticalAlign=top;spacingLeft=8;fontFamily=Arial;fontSize=20;" vertex="1" parent="spec_items">
+          <mxGeometry x="0" y="40" width="330" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="orders" value="Заявка / orders" style="shape=swimlane;startSize=36;horizontal=1;html=0;fontFamily=Arial;fontSize=21;fillColor=#e8eef3;strokeColor=#253746;" vertex="1" parent="1">
+          <mxGeometry x="870" y="65" width="330" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="orders_fields" value="PK id&#10;number (AK)&#10;purpose&#10;spec_version&#10;server_serial (AK)" style="text;html=0;align=left;verticalAlign=top;spacingLeft=8;fontFamily=Arial;fontSize=20;" vertex="1" parent="orders">
+          <mxGeometry x="0" y="40" width="330" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="plan_tests" value="Состав / plan_tests" style="shape=swimlane;startSize=36;horizontal=1;html=0;fontFamily=Arial;fontSize=21;fillColor=#e8eef3;strokeColor=#253746;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="65" width="330" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="plan_tests_fields" value="PK, FK plan_id&#10;PK, FK test_id" style="text;html=0;align=left;verticalAlign=top;spacingLeft=8;fontFamily=Arial;fontSize=20;" vertex="1" parent="plan_tests">
+          <mxGeometry x="0" y="40" width="330" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="tests" value="Тест / tests" style="shape=swimlane;startSize=36;horizontal=1;html=0;fontFamily=Arial;fontSize=21;fillColor=#e8eef3;strokeColor=#253746;" vertex="1" parent="1">
+          <mxGeometry x="1730" y="65" width="300" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="tests_fields" value="PK id&#10;code (AK)&#10;name" style="text;html=0;align=left;verticalAlign=top;spacingLeft=8;fontFamily=Arial;fontSize=20;" vertex="1" parent="tests">
+          <mxGeometry x="0" y="40" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="components" value="Компонент / components" style="shape=swimlane;startSize=36;horizontal=1;html=0;fontFamily=Arial;fontSize=21;fillColor=#e8eef3;strokeColor=#253746;" vertex="1" parent="1">
+          <mxGeometry x="40" y="440" width="310" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="components_fields" value="PK id&#10;serial&#10;FK model_id" style="text;html=0;align=left;verticalAlign=top;spacingLeft=8;fontFamily=Arial;fontSize=20;" vertex="1" parent="components">
+          <mxGeometry x="0" y="40" width="310" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="run_components" value="Состав / run_components" style="shape=swimlane;startSize=36;horizontal=1;html=0;fontFamily=Arial;fontSize=21;fillColor=#e8eef3;strokeColor=#253746;" vertex="1" parent="1">
+          <mxGeometry x="440" y="440" width="330" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="run_components_fields" value="PK, FK run_id&#10;PK, FK component_id" style="text;html=0;align=left;verticalAlign=top;spacingLeft=8;fontFamily=Arial;fontSize=20;" vertex="1" parent="run_components">
+          <mxGeometry x="0" y="40" width="330" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="runs" value="Прогон / runs" style="shape=swimlane;startSize=36;horizontal=1;html=0;fontFamily=Arial;fontSize=21;fillColor=#e8eef3;strokeColor=#253746;" vertex="1" parent="1">
+          <mxGeometry x="870" y="420" width="330" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="runs_fields" value="PK id&#10;FK order_id&#10;FK plan_id&#10;number&#10;engineer&#10;bios&#10;bmc" style="text;html=0;align=left;verticalAlign=top;spacingLeft=8;fontFamily=Arial;fontSize=20;" vertex="1" parent="runs">
+          <mxGeometry x="0" y="40" width="330" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="plans" value="План / plans" style="shape=swimlane;startSize=36;horizontal=1;html=0;fontFamily=Arial;fontSize=21;fillColor=#e8eef3;strokeColor=#253746;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="440" width="330" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="plans_fields" value="PK id&#10;version (AK)" style="text;html=0;align=left;verticalAlign=top;spacingLeft=8;fontFamily=Arial;fontSize=20;" vertex="1" parent="plans">
+          <mxGeometry x="0" y="40" width="330" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="defects" value="Дефект / defects" style="shape=swimlane;startSize=36;horizontal=1;html=0;fontFamily=Arial;fontSize=21;fillColor=#e8eef3;strokeColor=#253746;" vertex="1" parent="1">
+          <mxGeometry x="870" y="870" width="330" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="defects_fields" value="PK id&#10;FK run_id&#10;description&#10;status" style="text;html=0;align=left;verticalAlign=top;spacingLeft=8;fontFamily=Arial;fontSize=20;" vertex="1" parent="defects">
+          <mxGeometry x="0" y="40" width="330" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="results" value="Результат / results" style="shape=swimlane;startSize=36;horizontal=1;html=0;fontFamily=Arial;fontSize=21;fillColor=#e8eef3;strokeColor=#253746;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="810" width="400" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="results_fields" value="PK, FK run_id&#10;PK, FK test_id&#10;status&#10;log_ref&#10;parameters&#10;performed_at" style="text;html=0;align=left;verticalAlign=top;spacingLeft=8;fontFamily=Arial;fontSize=20;" vertex="1" parent="results">
+          <mxGeometry x="0" y="40" width="400" height="220" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
