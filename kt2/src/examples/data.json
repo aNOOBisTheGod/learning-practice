@@ -1,0 +1,291 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "number": "REQ-001",
+      "purpose": "Учебный сервер виртуализации",
+      "spec_version": "SPEC-1",
+      "server_serial": "SRV-001"
+    }
+  ],
+  "models": [
+    {
+      "id": 1,
+      "kind": "cpu",
+      "name": "CPU-A"
+    },
+    {
+      "id": 2,
+      "kind": "memory",
+      "name": "RAM-ECC-32"
+    },
+    {
+      "id": 3,
+      "kind": "storage",
+      "name": "SSD-960"
+    }
+  ],
+  "spec_items": [
+    {
+      "order_id": 1,
+      "model_id": 1,
+      "quantity": 1
+    },
+    {
+      "order_id": 1,
+      "model_id": 2,
+      "quantity": 2
+    },
+    {
+      "order_id": 1,
+      "model_id": 3,
+      "quantity": 1
+    }
+  ],
+  "plans": [
+    {
+      "id": 1,
+      "version": "PLAN-1"
+    }
+  ],
+  "tests": [
+    {
+      "id": 1,
+      "code": "cpu",
+      "name": "Процессор"
+    },
+    {
+      "id": 2,
+      "code": "memory",
+      "name": "Память"
+    },
+    {
+      "id": 3,
+      "code": "storage",
+      "name": "Накопители"
+    },
+    {
+      "id": 4,
+      "code": "network",
+      "name": "Сеть"
+    },
+    {
+      "id": 5,
+      "code": "cooling",
+      "name": "Охлаждение"
+    },
+    {
+      "id": 6,
+      "code": "power",
+      "name": "Питание"
+    }
+  ],
+  "plan_tests": [
+    {
+      "plan_id": 1,
+      "test_id": 1
+    },
+    {
+      "plan_id": 1,
+      "test_id": 2
+    },
+    {
+      "plan_id": 1,
+      "test_id": 3
+    },
+    {
+      "plan_id": 1,
+      "test_id": 4
+    },
+    {
+      "plan_id": 1,
+      "test_id": 5
+    },
+    {
+      "plan_id": 1,
+      "test_id": 6
+    }
+  ],
+  "runs": [
+    {
+      "id": 1,
+      "order_id": 1,
+      "plan_id": 1,
+      "number": 1,
+      "engineer": "Инженер испытаний",
+      "bios": "UEFI-1",
+      "bmc": "BMC-1"
+    },
+    {
+      "id": 2,
+      "order_id": 1,
+      "plan_id": 1,
+      "number": 2,
+      "engineer": "Инженер испытаний",
+      "bios": "UEFI-1",
+      "bmc": "BMC-1"
+    }
+  ],
+  "components": [
+    {
+      "id": 1,
+      "serial": "CPU-001",
+      "model_id": 1
+    },
+    {
+      "id": 2,
+      "serial": "RAM-001",
+      "model_id": 2
+    },
+    {
+      "id": 3,
+      "serial": "RAM-002",
+      "model_id": 2
+    },
+    {
+      "id": 4,
+      "serial": "SSD-001",
+      "model_id": 3
+    }
+  ],
+  "run_components": [
+    {
+      "run_id": 1,
+      "component_id": 1
+    },
+    {
+      "run_id": 1,
+      "component_id": 2
+    },
+    {
+      "run_id": 1,
+      "component_id": 3
+    },
+    {
+      "run_id": 1,
+      "component_id": 4
+    },
+    {
+      "run_id": 2,
+      "component_id": 1
+    },
+    {
+      "run_id": 2,
+      "component_id": 2
+    },
+    {
+      "run_id": 2,
+      "component_id": 3
+    },
+    {
+      "run_id": 2,
+      "component_id": 4
+    }
+  ],
+  "results": [
+    {
+      "run_id": 1,
+      "test_id": 1,
+      "status": "pass",
+      "log_ref": "logs/run-1/test-1.txt",
+      "parameters": "Учебный прогон, профиль standard",
+      "performed_at": "2026-10-30T11:00:00+03:00"
+    },
+    {
+      "run_id": 1,
+      "test_id": 2,
+      "status": "fail",
+      "log_ref": "logs/run-1/test-2.txt",
+      "parameters": "Учебный прогон, профиль standard",
+      "performed_at": "2026-10-30T11:00:00+03:00"
+    },
+    {
+      "run_id": 1,
+      "test_id": 3,
+      "status": "pass",
+      "log_ref": "logs/run-1/test-3.txt",
+      "parameters": "Учебный прогон, профиль standard",
+      "performed_at": "2026-10-30T11:00:00+03:00"
+    },
+    {
+      "run_id": 1,
+      "test_id": 4,
+      "status": "pass",
+      "log_ref": "logs/run-1/test-4.txt",
+      "parameters": "Учебный прогон, профиль standard",
+      "performed_at": "2026-10-30T11:00:00+03:00"
+    },
+    {
+      "run_id": 1,
+      "test_id": 5,
+      "status": "pass",
+      "log_ref": "logs/run-1/test-5.txt",
+      "parameters": "Учебный прогон, профиль standard",
+      "performed_at": "2026-10-30T11:00:00+03:00"
+    },
+    {
+      "run_id": 1,
+      "test_id": 6,
+      "status": "pass",
+      "log_ref": "logs/run-1/test-6.txt",
+      "parameters": "Учебный прогон, профиль standard",
+      "performed_at": "2026-10-30T11:00:00+03:00"
+    },
+    {
+      "run_id": 2,
+      "test_id": 1,
+      "status": "pass",
+      "log_ref": "logs/run-2/test-1.txt",
+      "parameters": "Учебный прогон, профиль standard",
+      "performed_at": "2026-10-30T12:00:00+03:00"
+    },
+    {
+      "run_id": 2,
+      "test_id": 2,
+      "status": "pass",
+      "log_ref": "logs/run-2/test-2.txt",
+      "parameters": "Учебный прогон, профиль standard",
+      "performed_at": "2026-10-30T12:00:00+03:00"
+    },
+    {
+      "run_id": 2,
+      "test_id": 3,
+      "status": "pass",
+      "log_ref": "logs/run-2/test-3.txt",
+      "parameters": "Учебный прогон, профиль standard",
+      "performed_at": "2026-10-30T12:00:00+03:00"
+    },
+    {
+      "run_id": 2,
+      "test_id": 4,
+      "status": "pass",
+      "log_ref": "logs/run-2/test-4.txt",
+      "parameters": "Учебный прогон, профиль standard",
+      "performed_at": "2026-10-30T12:00:00+03:00"
+    },
+    {
+      "run_id": 2,
+      "test_id": 5,
+      "status": "pass",
+      "log_ref": "logs/run-2/test-5.txt",
+      "parameters": "Учебный прогон, профиль standard",
+      "performed_at": "2026-10-30T12:00:00+03:00"
+    },
+    {
+      "run_id": 2,
+      "test_id": 6,
+      "status": "pass",
+      "log_ref": "logs/run-2/test-6.txt",
+      "parameters": "Учебный прогон, профиль standard",
+      "performed_at": "2026-10-30T12:00:00+03:00"
+    }
+  ],
+  "defects": [
+    {
+      "id": 1,
+      "run_id": 1,
+      "description": "Неплотная установка модуля памяти; модуль установлен повторно",
+      "status": "closed"
+    }
+  ]
+}
