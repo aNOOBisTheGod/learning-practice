@@ -248,7 +248,7 @@ def bpmn():
     nodes=[
       ('Start','startEvent','Заявка и комплект получены','Kit',(250,185,40,40)),
       ('KitTask','manualTask','Передать комплект и документы','Kit',(430,170,165,80)),
-      ('Register','userTask','Зарегистрировать заявку','Build',(240,350,165,80)),
+      ('Register','userTask','Зарегистрировать заявку и прогон','Build',(240,350,165,80)),
       ('Inspect','manualTask','Проверить детали по документации','Build',(460,350,165,80)),
       ('Parts','exclusiveGateway','Комплект пригоден?','Build',(675,365,50,50)),
       ('Assemble','manualTask','Собрать сервер','Build',(775,350,165,80)),
@@ -306,7 +306,7 @@ def bpmn():
         for tag in ('incoming','outgoing','messageEventDefinition'):
             for child in children:
                 if child.tag.endswith('}'+tag):node.append(child)
-    data=[('DOrder','Заявка; спецификация\norders / spec_items',(245,470,50,65),'Register'),('DModels','Каталог моделей\nmodels',(480,470,50,65),'Inspect'),('DComponents','Компоненты; состав\ncomponents / run_components',(1710,420,50,65),'Config'),('DSpec','Спецификация\nspec_items',(1325,470,50,65),'Config'),('DPlan','План; состав; тесты\nplans / plan_tests / tests',(1810,660,50,65),'Run'),('DRun','Карточка прогона\nruns',(1810,850,50,65),'Run'),('DResults','Результаты\nresults',(1335,850,50,65),'Evaluate'),('DDefects','Дефекты\ndefects',(630,720,50,65),'Defect'),('DProtocol','Протокол\n(представление)',(1050,880,50,65),'Review')]
+    data=[('DOrder','Заявка; спецификация\norders / spec_items',(245,470,50,65),'Register'),('DModels','Каталог моделей\nmodels',(480,470,50,65),'Inspect'),('DComponents','Компоненты; состав\ncomponents / run_components',(1710,420,50,65),'Config'),('DSpec','Спецификация\nspec_items',(1325,470,50,65),'Config'),('DPlan','План; состав; тесты\nplans / plan_tests / tests',(1810,660,50,65),'Run'),('DRun','Карточка прогона\nruns',(650,160,50,65),'Register'),('DResults','Результаты\nresults',(1335,850,50,65),'Evaluate'),('DDefects','Дефекты\ndefects',(630,720,50,65),'Defect'),('DProtocol','Протокол\n(представление)',(1050,880,50,65),'Review')]
     assocs=[]
     boxes={n[0]:n[4] for n in nodes}
     for ident,name,box,target in data:
@@ -319,7 +319,8 @@ def bpmn():
         # Ассоциации без направления: документ используется или создаётся задачей.
         el(process,'bpmn:association',id=aid,sourceRef=ident,targetRef=actual_target,associationDirection='None')
         x,y,w,h=box;tx,ty,tw,th=boxes[actual_target]
-        if ident=='DComponents':points=[(x+25,y),(1735,310),(857,310),(857,350)]
+        if ident=='DRun':points=[(700,192),(800,192),(800,320),(322,320),(322,350)]
+        elif ident=='DComponents':points=[(x+25,y),(1735,310),(857,310),(857,350)]
         elif ident=='DResults':points=[(x+25,y),(1360,815),(1605,815),(1605,780)]
         else:points=[(x+w/2,y),(x+w/2,ty+th+20),(tx+tw/2,ty+th+20),(tx+tw/2,ty+th)]
         assocs.append((aid,points))
@@ -355,7 +356,7 @@ def bpmn():
                 d.line([(516,394),(540,412),(564,394)],fill='#253746',width=2)
         else:
             auto=ident in ('Config','Evaluate','Protocol')
-            shape(d,'task',box,name,fill='#dceefb' if auto else 'white',size=19)
+            shape(d,'task',box,name,fill='#dceefb' if auto else 'white',size=17 if ident=='Register' else 19)
         di_shape(ident,box,label_box=lb)
     for ident,name,box,target in data:
         di_shape(ident,box,label_box=(box[0]-60,box[1]+70,170,65));shape(d,'data',box);label(d,name,(box[0]-65,box[1]+70,180,65),17)

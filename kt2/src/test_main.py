@@ -29,6 +29,16 @@ def test_success_and_history():
     assert build_protocol(data, 2)['ready']
     assert not build_protocol(data, 1)['ready']
     assert data == before
+    early = fixture()
+    early['runs'] = [early['runs'][0]]
+    early['runs'][0].update(bios='не определено', bmc='не определено')
+    early['run_components'] = []
+    early['results'] = []
+    early['defects'][0].update(status='open', description='Деталь не соответствует документации')
+    protocol = build_protocol(early, 1)
+    assert not protocol['ready']
+    assert any('Открыт дефект' in reason for reason in protocol['reasons'])
+    assert any('Пропущено обязательных тестов: 6' == reason for reason in protocol['reasons'])
 
 
 def test_configuration():

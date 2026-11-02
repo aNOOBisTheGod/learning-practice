@@ -42,7 +42,7 @@
       <bpmn:incoming>F0</bpmn:incoming>
       <bpmn:outgoing>F1</bpmn:outgoing>
     </bpmn:manualTask>
-    <bpmn:userTask id="Register" name="Зарегистрировать заявку">
+    <bpmn:userTask id="Register" name="Зарегистрировать заявку и прогон">
       <bpmn:incoming>F1</bpmn:incoming>
       <bpmn:outgoing>F2</bpmn:outgoing>
     </bpmn:userTask>
@@ -170,7 +170,7 @@
     <bpmn:association id="ADComponents" sourceRef="DComponents" targetRef="Assemble" associationDirection="None" />
     <bpmn:association id="ADSpec" sourceRef="DSpec" targetRef="Config" associationDirection="None" />
     <bpmn:association id="ADPlan" sourceRef="DPlan" targetRef="Run" associationDirection="None" />
-    <bpmn:association id="ADRun" sourceRef="DRun" targetRef="Run" associationDirection="None" />
+    <bpmn:association id="ADRun" sourceRef="DRun" targetRef="Register" associationDirection="None" />
     <bpmn:association id="ADResults" sourceRef="DResults" targetRef="Run" associationDirection="None" />
     <bpmn:association id="ADDefects" sourceRef="DDefects" targetRef="Defect" associationDirection="None" />
     <bpmn:association id="ADProtocol" sourceRef="DProtocol" targetRef="Protocol" associationDirection="None" />
@@ -301,9 +301,9 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DRun_di" bpmnElement="DRun">
-        <dc:Bounds x="1810" y="850" width="50" height="65" />
+        <dc:Bounds x="650" y="160" width="50" height="65" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1750" y="920" width="170" height="65" />
+          <dc:Bounds x="590" y="230" width="170" height="65" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DResults_di" bpmnElement="DResults">
@@ -470,10 +470,11 @@
         <di:waypoint x="1605.0" y="780" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="ADRun_di" bpmnElement="ADRun">
-        <di:waypoint x="1835.0" y="850" />
-        <di:waypoint x="1835.0" y="800" />
-        <di:waypoint x="1605.0" y="800" />
-        <di:waypoint x="1605.0" y="780" />
+        <di:waypoint x="700" y="192" />
+        <di:waypoint x="800" y="192" />
+        <di:waypoint x="800" y="320" />
+        <di:waypoint x="322" y="320" />
+        <di:waypoint x="322" y="350" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="ADResults_di" bpmnElement="ADResults">
         <di:waypoint x="1360" y="850" />
