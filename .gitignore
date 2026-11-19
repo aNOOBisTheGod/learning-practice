@@ -16,3 +16,9 @@ __pycache__/
 ~$*
 
 /kt2/vcs/git_log.txt
+
+*.class
+**/target/
+**/build/
+**/out/
+/kt3/vcs/git_log.txt
