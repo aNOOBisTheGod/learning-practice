@@ -1,0 +1,757 @@
+{
+  "comparison": "full JSON and stdout for valid data; exit codes for invalid data",
+  "cases": 150,
+  "cli_checks": 7,
+  "results": [
+    {
+      "case": "pass",
+      "exit_code": 0,
+      "match": true
+    },
+    {
+      "case": "historical_fail",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "unknown_run",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "status_fail",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "status_pending",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "status_unknown",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "status_",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "status_None",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "blank_log_ref_''",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "blank_performed_at_''",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "blank_log_ref_'   '",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "blank_performed_at_'   '",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "blank_log_ref_'\\xa0'",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "blank_performed_at_'\\xa0'",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "blank_log_ref_'\\x85'",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "blank_performed_at_'\\x85'",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "blank_log_ref_'\\u2003'",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "blank_performed_at_'\\u2003'",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "blank_log_ref_'\\t\\n'",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "blank_performed_at_'\\t\\n'",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "missing_test",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "missing_all_tests",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "old_open_defect",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "defect_bad_status",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "incomplete_configuration",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "empty_configuration",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "deficit",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "excess",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "extra_model",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "huge_quantity",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "duplicate_orders",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "missing_field_orders",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "extra_field_orders",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "not_list_orders",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "duplicate_models",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "missing_field_models",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "extra_field_models",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "not_list_models",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "duplicate_spec_items",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "missing_field_spec_items",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "extra_field_spec_items",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "not_list_spec_items",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "duplicate_plans",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "missing_field_plans",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "extra_field_plans",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "not_list_plans",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "duplicate_tests",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "missing_field_tests",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "extra_field_tests",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "not_list_tests",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "duplicate_plan_tests",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "missing_field_plan_tests",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "extra_field_plan_tests",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "not_list_plan_tests",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "duplicate_runs",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "missing_field_runs",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "extra_field_runs",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "not_list_runs",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "duplicate_components",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "missing_field_components",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "extra_field_components",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "not_list_components",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "duplicate_run_components",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "missing_field_run_components",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "extra_field_run_components",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "not_list_run_components",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "duplicate_results",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "missing_field_results",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "extra_field_results",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "not_list_results",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "duplicate_defects",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "missing_field_defects",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "extra_field_defects",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "not_list_defects",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "broken_fk_spec_itemsmodel_id",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "broken_fk_spec_itemsorder_id",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "broken_fk_plan_testsplan_id",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "broken_fk_plan_teststest_id",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "broken_fk_runsorder_id",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "broken_fk_runsplan_id",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "broken_fk_componentsmodel_id",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "broken_fk_run_componentsrun_id",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "broken_fk_run_componentscomponent_id",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "broken_fk_resultsrun_id",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "broken_fk_resultstest_id",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "broken_fk_defectsrun_id",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "bad_quantity_True",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "bad_quantity_False",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "bad_quantity_0",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "bad_quantity_-1",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "bad_quantity_'2'",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "bad_quantity_1.5",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "bad_quantity_None",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "bad_quantity_[]",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "bad_quantity_{}",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "alternate_key_orders['number']",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "alternate_key_orders['server_serial']",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "alternate_key_models['kind', 'name']",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "alternate_key_plans['version']",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "alternate_key_tests['code']",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "alternate_key_runs['order_id', 'number']",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "alternate_key_components['model_id', 'serial']",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "empty_spec",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "empty_plan",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "result_outside_plan",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "early_refusal",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "other_order_isolation",
+      "exit_code": 0,
+      "match": true
+    },
+    {
+      "case": "big_integer_ids",
+      "exit_code": 0,
+      "match": true
+    },
+    {
+      "case": "unicode_roundtrip",
+      "exit_code": 0,
+      "match": true
+    },
+    {
+      "case": "seeded_0",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_1",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_2",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_3",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_4",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_5",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_6",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_7",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_8",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_9",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_10",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_11",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_12",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_13",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_14",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_15",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_16",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_17",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_18",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_19",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_20",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_21",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_22",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_23",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_24",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_25",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_26",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_27",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_28",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "seeded_29",
+      "exit_code": 1,
+      "match": true
+    },
+    {
+      "case": "malformed_0",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "malformed_1",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "malformed_2",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "malformed_3",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "malformed_4",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "malformed_5",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "malformed_6",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "malformed_7",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "malformed_8",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "malformed_9",
+      "exit_code": 64,
+      "match": true
+    },
+    {
+      "case": "malformed_10",
+      "exit_code": 64,
+      "match": true
+    }
+  ]
+}
