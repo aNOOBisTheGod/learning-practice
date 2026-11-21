@@ -3,7 +3,7 @@
     "production_files": 1,
     "functions": 9,
     "classes": 0,
-    "lines": 209
+    "lines": 212
   },
   "java": {
     "production_files": 21,
@@ -11,6 +11,6 @@
     "records": 12,
     "interfaces": 1,
     "classes": 8,
-    "lines": 703
+    "lines": 708
   }
 }

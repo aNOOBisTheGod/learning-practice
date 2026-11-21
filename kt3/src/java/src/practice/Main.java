@@ -52,7 +52,12 @@ public final class Main {
             ProtocolService service = new ProtocolService(data,
                     List.of(new ConfigurationRule(), new ProtocolRule()));
             Map<String, Object> protocol = service.buildProtocol(runId);
-            if (output != null) Files.writeString(output, Json.stringify(protocol) + "\n", StandardCharsets.UTF_8);
+            if (output != null) {
+                if (output.toAbsolutePath().normalize().equals(input.toAbsolutePath().normalize())
+                        || (Files.exists(output) && Files.isSameFile(input, output)))
+                    throw new IllegalArgumentException("Выходной файл совпадает со входным");
+                Files.writeString(output, Json.stringify(protocol) + "\n", StandardCharsets.UTF_8);
+            }
             out.println("Заявка: " + protocol.get("order") + "; сервер: " + protocol.get("serial")
                     + "; прогон: " + protocol.get("run_number"));
             out.println("Спецификация: " + protocol.get("spec_version") + "; план: " + protocol.get("plan"));
