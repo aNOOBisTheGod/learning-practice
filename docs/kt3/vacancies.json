@@ -1,0 +1,243 @@
+[
+  {
+    "id": "V01",
+    "role": "Java-разработчик",
+    "title": "Java-разработчик (Junior)",
+    "company": "Лига Цифровой Экономики",
+    "platform": "Хабр Карьера",
+    "url": "https://career.habr.com/vacancies/1000169581",
+    "viewed": "2026-11-21",
+    "requirements": "ООП, алгоритмы и структуры данных, JVM и компиляция; в карточке указаны Java, REST, Git, PostgreSQL. Английский A1. Разработка и сопровождение сервисов, написание модульных тестов.",
+    "experience": "Junior; минимальный стаж в годах не указан",
+    "conditions": "Москва; доступна удалённая работа, техника, ДМС и обучение; зарплата не указана",
+    "required_tags": [
+      "Java",
+      "REST/API",
+      "Git/GitLab",
+      "PostgreSQL"
+    ],
+    "optional_tags": [],
+    "context_tags": [
+      "Kubernetes"
+    ],
+    "note": "Kubernetes описывает архитектуру проекта; не включён в счётчик требований."
+  },
+  {
+    "id": "V02",
+    "role": "Java-разработчик",
+    "title": "Java-разработчик",
+    "company": "Т-Банк",
+    "platform": "Сайт работодателя",
+    "url": "https://www.tbank.ru/career/it/vacancy/bryansk/java/d11d80e1-7723-4c47-b9e1-27609b3ae4e4/",
+    "viewed": "2026-11-21",
+    "requirements": "Java 11+ либо Kotlin, опыт с одним из серверных фреймворков (в том числе Spring Boot), контейнеризацией и брокерами сообщений, системой контроля версий.",
+    "experience": "Middle; разработка на Java от 3 лет",
+    "conditions": "Офис или удалённо по договорённости, ДМС, развитие с ментором; зарплата обсуждается на собеседовании",
+    "required_tags": [
+      "Java",
+      "Spring",
+      "Контейнеризация",
+      "Брокеры сообщений",
+      "Контроль версий"
+    ],
+    "optional_tags": [
+      "Реляционные БД"
+    ],
+    "context_tags": [],
+    "note": "Spring Boot, Docker/Kubernetes и Kafka/RabbitMQ перечислены как варианты внутри групп, а не как одновременное требование всех инструментов. Опыт PostgreSQL/MySQL/Oracle — преимущество. Содержание получено из индексированной страницы сайта работодателя; прямое открытие ссылки при проверке вернуло сетевую ошибку, активность вакансии на сайте не подтверждена."
+  },
+  {
+    "id": "V03",
+    "role": "Java-разработчик",
+    "title": "Java-разработчик",
+    "company": "БФТ — Холдинг",
+    "platform": "Хабр Карьера",
+    "url": "https://career.habr.com/vacancies/1000165768",
+    "viewed": "2026-11-21",
+    "requirements": "Java 11+, Spring, многопоточность и JMM, Maven, Git, работа с SQL/NoSQL, очередями сообщений и GitLab CI.",
+    "experience": "Middle; коммерческая разработка от 3 лет",
+    "conditions": "Москва, возможна удалённая работа; оформление по ТК, техника, ДМС после испытательного срока; зарплата не указана",
+    "required_tags": [
+      "Java",
+      "Spring",
+      "SQL",
+      "PostgreSQL",
+      "Git/GitLab",
+      "CI/CD",
+      "Брокеры сообщений"
+    ],
+    "optional_tags": [],
+    "context_tags": [
+      "Kubernetes"
+    ],
+    "note": "Kubernetes указан в стеке проекта, отдельно в требованиях к кандидату не выделен."
+  },
+  {
+    "id": "V04",
+    "role": "Инженер по тестированию",
+    "title": "Инженер по автоматизированному тестированию (Java)",
+    "company": "IBS",
+    "platform": "Хабр Карьера",
+    "url": "https://career.habr.com/vacancies/1000170300",
+    "viewed": "2026-11-21",
+    "requirements": "Автотесты с JUnit или TestNG, SQL-запросы с объединением нескольких таблиц, тестовая модель и покрытие, XML/JSON/XSD, чтение логов, команды Unix.",
+    "experience": "Middle; автотесты и SQL — не менее 3 лет",
+    "conditions": "Москва или Пермь; предоставляют технику, ежегодная аттестация; зарплата и удалённый формат не конкретизированы",
+    "required_tags": [
+      "Java",
+      "SQL",
+      "JUnit/TestNG",
+      "Linux/Unix"
+    ],
+    "optional_tags": [],
+    "context_tags": [],
+    "note": "Учитывается именно вакансия Java AQA, а не соседние вакансии компании."
+  },
+  {
+    "id": "V05",
+    "role": "Инженер по тестированию",
+    "title": "Automation QA (Java)",
+    "company": "ITK academy",
+    "platform": "Хабр Карьера",
+    "url": "https://career.habr.com/vacancies/1000168122",
+    "viewed": "2026-11-21",
+    "requirements": "Java/Kotlin Core и коллекции, Git, JUnit/TestNG, RestAssured, тестирование Spring Boot, SQL JOIN, Docker, запуск тестов в CI/CD и Mockito; нужны проекты с автотестами.",
+    "experience": "В карточке Junior; рассматривают также Middle, минимальный стаж в годах не указан",
+    "conditions": "Удалённо, полный день, 5/2 с гибким началом; до 120 000 ₽, налоговый статус суммы не указан",
+    "required_tags": [
+      "Java",
+      "Spring",
+      "SQL",
+      "Git/GitLab",
+      "JUnit/TestNG",
+      "REST/API",
+      "Контейнеризация",
+      "CI/CD"
+    ],
+    "optional_tags": [
+      "Selenium/Playwright",
+      "Брокеры сообщений"
+    ],
+    "context_tags": [],
+    "note": "Selenium/Playwright, отчётность Allure и работа с брокерами перечислены как преимущества."
+  },
+  {
+    "id": "V06",
+    "role": "Системный аналитик",
+    "title": "Старший системный аналитик (ТОР)",
+    "company": "S7 TechLab",
+    "platform": "Хабр Карьера",
+    "url": "https://career.habr.com/vacancies/1000169180",
+    "viewed": "2026-11-21",
+    "requirements": "Анализ ERP/MRO, моделирование BPMN/UML/C4, интеграции REST/SOAP и брокеры, SQL, проектная документация, английский B1/B2, высшее образование.",
+    "experience": "Senior; опыт анализа корпоративных ERP/MRO, минимальное число лет не указано",
+    "conditions": "Москва; офис или гибрид, ДМС после испытательного срока, обучение и корпоративные тарифы на перелёты; зарплата не указана",
+    "required_tags": [
+      "SQL",
+      "BPMN",
+      "UML",
+      "REST/API",
+      "Брокеры сообщений"
+    ],
+    "optional_tags": [],
+    "context_tags": [
+      "Java",
+      "PostgreSQL"
+    ],
+    "note": "Java и PostgreSQL названы стеком продукта; не засчитываются как явно требуемый опыт разработки аналитика."
+  },
+  {
+    "id": "V07",
+    "role": "Системный аналитик",
+    "title": "Системный аналитик (Минск)",
+    "company": "SimbirSoft",
+    "platform": "Хабр Карьера",
+    "url": "https://career.habr.com/vacancies/1000169568",
+    "viewed": "2026-11-21",
+    "requirements": "Системный анализ, BPMN, UML и ER-модели; банковские процессы, работа с требованиями и документацией, Jira/Confluence, HTTP/REST/SOAP, JSON/XML/XSD, Kafka, Postman.",
+    "experience": "Middle; системный анализ от 3 лет, банковские и FinTech-проекты",
+    "conditions": "Минск, работа из офиса с 08:30 до 17:30, менторство и обучение; зарплата не указана",
+    "required_tags": [
+      "BPMN",
+      "UML",
+      "REST/API",
+      "Брокеры сообщений"
+    ],
+    "optional_tags": [],
+    "context_tags": [],
+    "note": "Вакансия из Беларуси включена как отдельный географический сегмент; её условия не обобщаются на Москву. SQL явно не назван, поэтому не засчитывается."
+  },
+  {
+    "id": "V08",
+    "role": "Системный аналитик",
+    "title": "Системный аналитик",
+    "company": "ЛБА Консалтинг",
+    "platform": "Хабр Карьера",
+    "url": "https://career.habr.com/vacancies/1000170327",
+    "viewed": "2026-11-21",
+    "requirements": "Сбор и управление требованиями, BPMN 2.0/UML, REST API и JSON/XML, SQL-запросы, техническая документация, структурирование информации и аргументированный диалог с заказчиком.",
+    "experience": "Middle; системный анализ от 3 лет",
+    "conditions": "Санкт-Петербург; удалённо, полная занятость 5/2, гибкое начало дня, обучение; от 150 000 ₽, налоговый статус суммы не указан",
+    "required_tags": [
+      "SQL",
+      "BPMN",
+      "UML",
+      "REST/API"
+    ],
+    "optional_tags": [
+      "Архитектурная оценка"
+    ],
+    "context_tags": [],
+    "note": "ATAM и опыт ERP/CRM/АБС обозначены как преимущества."
+  },
+  {
+    "id": "V09",
+    "role": "Инженер эксплуатации и DevOps",
+    "title": "DevOps инженер",
+    "company": "EFIN",
+    "platform": "Хабр Карьера",
+    "url": "https://career.habr.com/vacancies/1000170543",
+    "viewed": "2026-11-21",
+    "requirements": "Linux и сети, Kubernetes/Helm, Docker, Ansible, Terraform/tofu, GitLab CI, сопровождение PostgreSQL/MongoDB и брокеров, мониторинг.",
+    "experience": "DevOps-инфраструктура от 3 лет; грейд явно не указан",
+    "conditions": "Офис, гибрид или удалённо; 5/2, оформление по ТК и социальный пакет; зарплата не указана",
+    "required_tags": [
+      "Linux/Unix",
+      "Контейнеризация",
+      "Kubernetes",
+      "Git/GitLab",
+      "CI/CD",
+      "PostgreSQL",
+      "Брокеры сообщений",
+      "IaC"
+    ],
+    "optional_tags": [],
+    "context_tags": [],
+    "note": "Знание PostgreSQL не приравнивается автоматически к явному требованию писать SQL-запросы."
+  },
+  {
+    "id": "V10",
+    "role": "Инженер эксплуатации и DevOps",
+    "title": "Администратор сервисов / DevOps (Kubernetes)",
+    "company": "SM Lab",
+    "platform": "Хабр Карьера",
+    "url": "https://career.habr.com/vacancies/1000169564",
+    "viewed": "2026-11-21",
+    "requirements": "Администрирование Linux, промышленный Kubernetes, OpenStack/Ceph, Git, GitLab CI, Ansible/Terraform, Prometheus, отказоустойчивость и масштабирование.",
+    "experience": "Linux от 3 лет и опыт промышленной эксплуатации Kubernetes",
+    "conditions": "Москва; офис, гибрид или удалённо, гибкий график, премии раз в полгода, льготы и техника; зарплата не указана",
+    "required_tags": [
+      "Linux/Unix",
+      "Контейнеризация",
+      "Kubernetes",
+      "Git/GitLab",
+      "CI/CD",
+      "IaC"
+    ],
+    "optional_tags": [
+      "Python/Go"
+    ],
+    "context_tags": [],
+    "note": "Python/Go — преимущество, не обязательное требование."
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "python": {
+    "production_files": 1,
+    "functions": 9,
+    "classes": 0,
+    "lines": 209
+  },
+  "java": {
+    "production_files": 21,
+    "types": 21,
+    "records": 12,
+    "interfaces": 1,
+    "classes": 8,
+    "lines": 703
+  }
+}

@@ -1,0 +1,297 @@
+@startuml classes
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam packageStyle rectangle
+skinparam linetype polyline
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam dpi 130
+hide empty members
+title
+КТ3 — учёт сборки и приёмочных испытаний сервера
+Классы реализации Java 17
+endtitle
+package "practice" {
+class Main {
+
+--
+  +{static} main(String[]) : void
+  +{static} run(String[], PrintStream, PrintStream) : int
+}
+}
+package "practice.io" {
+class DataValidator {
+
+--
+  +validate(Object) : Rows
+  -unique(Rows, String, String...) : void
+  -schema() : Map<String, List<String>>
+}
+class Json {
+  -text : String
+  -position : int
+--
+  +parse() : Object
+  -error(String) : IllegalArgumentException
+  -whitespace() : void
+  -take(char) : boolean
+  -expect(char) : void
+  -value(int) : Object
+  -digit(char) : boolean
+  -digits() : void
+  -string() : String
+  +{static} blank(String) : boolean
+  +{static} stringify(Object) : String
+}
+}
+package "practice.model" {
+class Component <<record>> {
+  -id : BigInteger
+  -serial : String
+  -model_id : BigInteger
+--
+  +toMap() : JsonObject
+  +id() : BigInteger
+  +serial() : String
+  +model_id() : BigInteger
+}
+class ComponentModel <<record>> {
+  -id : BigInteger
+  -kind : String
+  -name : String
+--
+  +toMap() : JsonObject
+  +id() : BigInteger
+  +kind() : String
+  +name() : String
+}
+class DataSet {
+  -orders : List<Order>
+  -models : List<ComponentModel>
+  -spec_items : List<SpecificationItem>
+  -plans : List<TestPlan>
+  -tests : List<TestDefinition>
+  -plan_tests : List<PlanTest>
+  -runs : List<TestRun>
+  -components : List<Component>
+  -run_components : List<RunComponent>
+  -results : List<TestResult>
+  -defects : List<Defect>
+--
+  +orders() : List<Order>
+  +models() : List<ComponentModel>
+  +spec_items() : List<SpecificationItem>
+  +plans() : List<TestPlan>
+  +tests() : List<TestDefinition>
+  +plan_tests() : List<PlanTest>
+  +runs() : List<TestRun>
+  +components() : List<Component>
+  +run_components() : List<RunComponent>
+  +results() : List<TestResult>
+  +defects() : List<Defect>
+}
+class Defect <<record>> {
+  -id : BigInteger
+  -run_id : BigInteger
+  -description : String
+  -status : String
+--
+  +toMap() : JsonObject
+  +id() : BigInteger
+  +run_id() : BigInteger
+  +description() : String
+  +status() : String
+}
+class Order <<record>> {
+  -id : BigInteger
+  -number : String
+  -purpose : String
+  -spec_version : String
+  -server_serial : String
+--
+  +toMap() : JsonObject
+  +id() : BigInteger
+  +number() : String
+  +purpose() : String
+  +spec_version() : String
+  +server_serial() : String
+}
+class PlanTest <<record>> {
+  -plan_id : BigInteger
+  -test_id : BigInteger
+--
+  +toMap() : JsonObject
+  +plan_id() : BigInteger
+  +test_id() : BigInteger
+}
+class RunComponent <<record>> {
+  -run_id : BigInteger
+  -component_id : BigInteger
+--
+  +toMap() : JsonObject
+  +run_id() : BigInteger
+  +component_id() : BigInteger
+}
+class RunContext <<record>> {
+  -order : Order
+  -plan : TestPlan
+  -run : TestRun
+  -specification : List<SpecificationItem>
+  -components : List<Component>
+  -results : List<TestResult>
+  -defects : List<Defect>
+  -requiredCount : int
+--
+  +order() : Order
+  +plan() : TestPlan
+  +run() : TestRun
+  +specification() : List<SpecificationItem>
+  +components() : List<Component>
+  +results() : List<TestResult>
+  +defects() : List<Defect>
+  +requiredCount() : int
+}
+class SpecificationItem <<record>> {
+  -order_id : BigInteger
+  -model_id : BigInteger
+  -quantity : BigInteger
+--
+  +toMap() : JsonObject
+  +order_id() : BigInteger
+  +model_id() : BigInteger
+  +quantity() : BigInteger
+}
+class TestDefinition <<record>> {
+  -id : BigInteger
+  -code : String
+  -name : String
+--
+  +toMap() : JsonObject
+  +id() : BigInteger
+  +code() : String
+  +name() : String
+}
+class TestPlan <<record>> {
+  -id : BigInteger
+  -version : String
+--
+  +toMap() : JsonObject
+  +id() : BigInteger
+  +version() : String
+}
+class TestResult <<record>> {
+  -run_id : BigInteger
+  -test_id : BigInteger
+  -status : String
+  -log_ref : String
+  -parameters : String
+  -performed_at : String
+--
+  +toMap() : JsonObject
+  +run_id() : BigInteger
+  +test_id() : BigInteger
+  +status() : String
+  +log_ref() : String
+  +parameters() : String
+  +performed_at() : String
+}
+class TestRun <<record>> {
+  -id : BigInteger
+  -order_id : BigInteger
+  -plan_id : BigInteger
+  -number : BigInteger
+  -engineer : String
+  -bios : String
+  -bmc : String
+--
+  +toMap() : JsonObject
+  +id() : BigInteger
+  +order_id() : BigInteger
+  +plan_id() : BigInteger
+  +number() : BigInteger
+  +engineer() : String
+  +bios() : String
+  +bmc() : String
+}
+}
+package "practice.rules" {
+abstract class AbstractAcceptanceRule {
+
+--
+  +check(RunContext) : List<String>
+  #{abstract} evaluate(RunContext) : List<String>
+}
+interface AcceptanceRule {
+
+--
+  +{abstract} check(RunContext) : List<String>
+}
+class ConfigurationRule {
+
+--
+  #evaluate(RunContext) : List<String>
+}
+class ProtocolRule {
+
+--
+  #evaluate(RunContext) : List<String>
+}
+}
+package "practice.service" {
+class ProtocolService {
+  -data : DataSet
+  -rules : List<AcceptanceRule>
+--
+  +context(BigInteger) : RunContext
+  +buildProtocol(BigInteger) : JsonObject
+}
+}
+
+AcceptanceRule <|.. AbstractAcceptanceRule
+AbstractAcceptanceRule <|-- ConfigurationRule
+AbstractAcceptanceRule <|-- ProtocolRule
+ProtocolService "0..*" o-- "1..*" AcceptanceRule : rules
+ProtocolService "0..*" --> "1" DataSet : data
+ProtocolService ..> RunContext : context()
+Main ..> ProtocolService : creates
+Main ..> Json : JSON I/O
+Main ..> DataSet : creates
+Main ..> ConfigurationRule : creates
+Main ..> ProtocolRule : creates
+DataSet ..> DataValidator : validate()
+ProtocolRule ..> Json : blank()
+AcceptanceRule ..> RunContext : check(context)
+RunContext "0..*" --> "1" Order : order
+RunContext "0..*" --> "1" TestPlan : plan
+RunContext "0..*" --> "1" TestRun : run
+RunContext "0..*" o-- "0..*" SpecificationItem : specification
+RunContext "0..*" o-- "0..*" Component : components
+RunContext "0..*" o-- "0..*" TestResult : results
+RunContext "0..*" o-- "0..*" Defect : defects
+Order "1" -- "1..*" SpecificationItem : order_id
+ComponentModel "1" -- "0..*" SpecificationItem : model_id
+Order "1" -- "0..*" TestRun : order_id
+TestPlan "1" -- "0..*" TestRun : plan_id
+TestPlan "1" -- "1..*" PlanTest : plan_id
+TestDefinition "1" -- "0..*" PlanTest : test_id
+ComponentModel "1" -- "0..*" Component : model_id
+TestRun "1" -- "0..*" RunComponent : run_id
+Component "1" -- "0..*" RunComponent : component_id
+TestRun "1" -- "0..*" TestResult : run_id
+TestDefinition "1" -- "0..*" TestResult : test_id
+TestRun "1" -- "0..*" Defect : run_id
+legend bottom left
+  + public; - private; # protected; подчёркивание = static
+  Полый треугольник: наследование; пунктир с треугольником: реализация интерфейса.
+  Полый ромб: агрегация. Правила и сущности могут существовать вне сервиса/контекста.
+  Ассоциации с *_id разрешаются по ключам в DataSet/ProtocolService; это не поля-ссылки Java.
+  DataSet хранит 11 типизированных List, перечисленных в атрибутах; линии к каждому списку опущены.
+  Record: поля private final, публичные аксессоры; конструкторы и стандартные Object-методы опущены.
+  JsonObject = Map<String, Object>; Rows = Map<String, List<Map<String, Object>>>.
+  Тестовый SelfTest не входит в структуру производственного приложения.
+endlegend
+@enduml

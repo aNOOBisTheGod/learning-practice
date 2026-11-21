@@ -1,0 +1,28 @@
+@startuml packages
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam dpi 130
+left to right direction
+title Пакеты ООП-реализации КТ3
+package "practice\nCLI: Main" as cli
+package "practice.service\nProtocolService" as service
+package "practice.rules\nИнтерфейс, базовый класс\nи два правила" as rules
+package "practice.model\n11 сущностей, DataSet, RunContext" as model
+package "practice.io\nJSON и валидация" as io
+cli ..> service
+cli ..> rules
+cli ..> model
+cli ..> io
+service ..> model
+service ..> rules
+rules ..> model
+rules ..> io
+model ..> io
+legend bottom
+Пунктир — зависимость пакета от типов другого пакета, не порядок выполнения.
+Подробные поля, методы и кратности связей — на classes.png.
+endlegend
+@enduml

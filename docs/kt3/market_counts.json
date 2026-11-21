@@ -1,0 +1,27 @@
+{
+  "required": {
+    "Java": 5,
+    "REST/API": 5,
+    "Git/GitLab": 5,
+    "PostgreSQL": 3,
+    "Spring": 3,
+    "Контейнеризация": 4,
+    "Брокеры сообщений": 5,
+    "Контроль версий": 1,
+    "SQL": 5,
+    "CI/CD": 4,
+    "JUnit/TestNG": 2,
+    "Linux/Unix": 3,
+    "BPMN": 3,
+    "UML": 3,
+    "Kubernetes": 2,
+    "IaC": 2
+  },
+  "optional": {
+    "Реляционные БД": 1,
+    "Selenium/Playwright": 1,
+    "Брокеры сообщений": 1,
+    "Архитектурная оценка": 1,
+    "Python/Go": 1
+  }
+}
