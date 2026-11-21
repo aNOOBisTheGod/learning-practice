@@ -193,6 +193,9 @@ def main(argv):
                           parse_constant=reject_constant, object_pairs_hook=unique_json_object)
         protocol = build_protocol(data, args.run)
         if args.output:
+            if (args.output.resolve() == args.data.resolve()
+                    or (args.output.exists() and args.output.samefile(args.data))):
+                raise ValueError('Выходной файл совпадает со входным')
             args.output.write_text(json.dumps(protocol, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     except (ValueError, OSError, UnicodeError) as error:
         print(f'Ошибка: {error}', file=sys.stderr)
